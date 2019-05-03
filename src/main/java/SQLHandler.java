@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class SQLHandler {
     private static final String url = "jdbc:mysql://localhost:3306/dota?ftimeCode=false&serverTimezone=UTC&useSSL=false";
-    private static final String user = "";
+    private static final String user = "root";
     private static final String password = "";
 
     private Connection con;

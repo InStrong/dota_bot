@@ -5,6 +5,16 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
+
 public class Bot extends TelegramLongPollingBot {
 
     private SQLHandler sqlHandler = new SQLHandler();
@@ -22,7 +32,7 @@ public class Bot extends TelegramLongPollingBot {
             }
             else {
                 if (sqlHandler.isHeroExists(message.getText())) {
-                    sendMessageToUser(message.getChatId(), sqlHandler.getImage(message.getText()));
+                    sendPhotoToUser(message.getChatId(), sqlHandler.getImage(message.getText()));
                     sendMessageToUser(message.getChatId(), sqlHandler.getBio(message.getText()));
                 }
                 else sendMessageToUser(message.getChatId(),"Такого героя нет в игре");
@@ -40,6 +50,20 @@ public class Bot extends TelegramLongPollingBot {
         }
 
     }
+    private void sendPhotoToUser(long chatId, String url_string) {
+
+        try {
+
+            SendPhoto sendPhoto = new SendPhoto().setChatId(chatId).setPhoto(url_string);
+            execute(sendPhoto);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 
     public String getBotUsername() {
         return "Dota2";
