@@ -19,7 +19,7 @@ public class Bot extends TelegramLongPollingBot {
 
     private SQLHandler sqlHandler = new SQLHandler();
     public String getBotToken() {
-        return "826639247:AAGMhc8ItPv0kEWB7R-fA9cbFhXiASjbpTc";
+        return "";
     }
 
     public void onUpdateReceived(Update update) {
